@@ -32,16 +32,31 @@
         </div>
     </div>
    </div>
+
+
+   <!-- js is starting from here  -->
    <script>
     const apikey="d2dbd83a3498c2227ebae2246cff0837";
-    const url="https://api.openweathermap.org/data/2.5/weather?q=bangalore";
+    const url="https://api.openweathermap.org/data/2.5/weather?q=";
+    const searchBox = document.querySelector('.search input')
+    const searchBtn = document.querySelector('.search button')
 
-    async function checkWeather() {
-       const respone=await fetch(url+`&appid=${apikey}`);
+
+    async function checkWeather(city) {
+       const respone=await fetch(url+ city+ `&appid=${apikey}`);
        const data=await respone.json();
        console.log(data) 
+       document.querySelector('.city').innerHTML=data.name;
+       document.querySelector('.temp').innerHTML=data.main.temp +"°c";
+       document.querySelector('.humidity').innerHTML= "Humidity "+ data.main.humidity +"%";
+       document.querySelector('.wind').innerHTML="wind "+data.wind.speed +" km/h";
+
     }
-    checkWeather();
+    
+    searchBtn.addEventListener('click',()=>{
+        checkWeather(searchBox.value);
+    })
+    checkWeather(city);
 
    </script>
 </body>
