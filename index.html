@@ -14,50 +14,29 @@
             <img src="./images/search.png" alt="searchBar">
         </button>
     </div>
+    <div class="error">
+        <h2>Invalid City Name...!</h2>
+    </div>
     <div class="weather">
         <img src="./images/rain.png" alt="" class="weather-icon">
-        <h1 class="temp">22°c</h1>
-        <h2 class="city">New York</h2>
+        <h1 class="temp"></h1>
+        <h2 class="city"></h2>
         <div class="details">
             <div class="col">
                 <img src="./images/humidity.png" alt="" >
-                <p class="humidity">Humidity 50%</p>
+                <p class="humidity"></p>
     
             </div>
             <div class="col">
                 <img src="./images/wind.png" alt="">
-                <p  class="wind">Wind speed <br>50% km/h</p>
+                <p  class="wind"></p>
                  
             </div>
         </div>
     </div>
    </div>
+<script src="index.js"></script>
 
-
-   <!-- js is starting from here  -->
-   <script>
-    const apikey="d2dbd83a3498c2227ebae2246cff0837";
-    const url="https://api.openweathermap.org/data/2.5/weather?q=";
-    const searchBox = document.querySelector('.search input')
-    const searchBtn = document.querySelector('.search button')
-
-
-    async function checkWeather(city) {
-       const respone=await fetch(url+ city+ `&appid=${apikey}`);
-       const data=await respone.json();
-       console.log(data) 
-       document.querySelector('.city').innerHTML=data.name;
-       document.querySelector('.temp').innerHTML=data.main.temp +"°c";
-       document.querySelector('.humidity').innerHTML= "Humidity "+ data.main.humidity +"%";
-       document.querySelector('.wind').innerHTML="wind "+data.wind.speed +" km/h";
-
-    }
-    
-    searchBtn.addEventListener('click',()=>{
-        checkWeather(searchBox.value);
-    })
-    checkWeather(city);
-
-   </script>
+  
 </body>
 </html>
